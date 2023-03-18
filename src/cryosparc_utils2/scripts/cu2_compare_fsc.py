@@ -46,7 +46,7 @@ def ticklabel_freq_to_resol(tick_val, tick_pos):
     return new_tick_val
 
 
-def main(project_uid: str, job_uid_list: List[str], outfile: str, conf: str, target: str) -> None:
+def compare_fsc(project_uid: str, job_uid_list: List[str], outfile: str, conf: str, target: str) -> None:
     cs = communicate_cryosparc(conf_file=conf)
     pj = cs.find_project(project_uid)
 
@@ -95,6 +95,10 @@ def main(project_uid: str, job_uid_list: List[str], outfile: str, conf: str, tar
     print(f"Plot was saved as {outfile}")
 
 
-if __name__ == "__main__":
+def main():
     args = parse_args()
-    main(args.project_uid, args.job_uid_list, args.outfile, args.conf, args.target)
+    compare_fsc(args.project_uid, args.job_uid_list, args.outfile, args.conf, args.target)
+
+
+if __name__ == '__main__':
+    main()
