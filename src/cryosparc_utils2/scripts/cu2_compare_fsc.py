@@ -88,7 +88,11 @@ def compare_fsc(project_uid: str, job_uid_list: List[str], outfile: str, conf: s
     ax.set_xlim(xmin=0, xmax=max_freq)
     ax.set_ylim(ymin=0, ymax=1)
     ax.xaxis.set_major_formatter(ticklabel_freq_to_resol)
-    ax.set_title("GSFSC Resolution (Corrected)")
+    if target == "noisesub":
+        title = "Corrected"
+    else:
+        title = target.title()
+    ax.set_title(f'GSFSC Resolution ({title})')
     plt.grid()
     plt.legend(loc="center left")
     plt.savefig(outfile)
@@ -100,5 +104,5 @@ def main():
     compare_fsc(args.project_uid, args.job_uid_list, args.outfile, args.conf, args.target)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
